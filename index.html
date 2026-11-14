@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Happy Birthday Box 🎂</title>
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-family: 'Segoe UI', sans-serif;
+  background: radial-gradient(circle, #392064, #0b0820);
+  color: white;
+}
+
+.card {
+  position: relative;
+  width: 90%;
+  max-width: 430px;
+  padding: 45px 25px;
+  text-align: center;
+  border-radius: 28px;
+  border: 1px solid #ffffff50;
+  background: #ffffff12;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 0 70px #b15cff55;
+  z-index: 2;
+}
+
+h1 {
+  font-size: clamp(32px, 7vw, 48px);
+  margin: 12px 0;
+  background: linear-gradient(90deg, #ff8ac5, #ffe6a0, #bda5ff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+h2 { color: #ffdf9b; }
+
+p {
+  color: #e4d7fa;
+  line-height: 1.7;
+}
+
+.cake {
+  font-size: 90px;
+  animation: float 2s infinite alternate ease-in-out;
+}
+
+@keyframes float {
+  to { transform: translateY(-13px); }
+}
+
+.balloon {
+  position: absolute;
+  font-size: 55px;
+  animation: float 3s infinite alternate;
+}
+
+.b1 { left: 7%; top: 12%; }
+.b2 { right: 8%; top: 20%; animation-delay: 1s; }
+.b3 { left: 12%; bottom: 10%; animation-delay: .5s; }
+.b4 { right: 10%; bottom: 12%; animation-delay: 1.5s; }
+
+button {
+  margin-top: 15px;
+  padding: 15px 28px;
+  border: none;
+  border-radius: 40px;
+  background: linear-gradient(90deg, #ff65ae, #ffca73);
+  color: #32103e;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 5px 30px #ff65ae70;
+  transition: .3s;
+}
+
+button:hover { transform: scale(1.08); }
+
+#message {
+  margin-top: 20px;
+  color: #ffe6a0;
+  font-weight: bold;
+}
+
+.confetti {
+  position: fixed;
+  top: -20px;
+  width: 9px;
+  height: 12px;
+  pointer-events: none;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="balloon b1">🎈</div>
+<div class="balloon b2">🎈</div>
+<div class="balloon b3">💜</div>
+<div class="balloon b4">🎈</div>
+
+<div class="card">
+  <div style="color:#ffda94;letter-spacing:3px">
+    ✨ A SPECIAL DAY ✨
+  </div>
+
+  <div class="cake">🎂</div>
+
+  <h1>Happy Birthday!</h1>
+  <h2>TO BOX 🎉</h2>
+
+  <p>
+    Wishing you a wonderful birthday
+    filled with happiness, love,
+    laughter, and beautiful memories!
+    💖
+  </p>
+
+  <button onclick="surprise()">
+    🎁 Open Your Surprise
+  </button>
+
+  <div id="message" aria-live="polite"></div>
+</div>
+
+<script>
+function surprise() {
+  document.getElementById("message").innerHTML =
+    "💖 You're amazing! Have the best birthday ever! 🎊";
+
+  const colors = [
+    "#ff65ae", "#ffda73", "#a995ff",
+    "#78e9dd", "#ffffff"
+  ];
+
+  for (let i = 0; i < 100; i++) {
+    const confetti = document.createElement("div");
+    confetti.className = "confetti";
+
+    confetti.style.left = Math.random() * 100 + "vw";
+    confetti.style.background =
+      colors[Math.floor(Math.random() * colors.length)];
+    confetti.style.animationDuration =
+      (2 + Math.random() * 3) + "s";
+    confetti.style.animationDelay =
+      Math.random() * 0.8 + "s";
+
+    document.body.appendChild(confetti);
+
+    setTimeout(() => confetti.remove(), 6000);
+  }
+}
+</script>
+
+</body>
+</html>
